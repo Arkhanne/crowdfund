@@ -1,26 +1,31 @@
-project1 = "ABC"
-project2 = "LMN"
-project3 = "XYZ"
-funds1 = 1000
-funds2 = 700
-funds3 = 4000
-project_column_name = "Project"
-funds_column_name = "Funds"
-offset_columns = 30
+class Project
+  def initialize(name, initialAmount=0, targetAmount)
+    @name = name
+    @amount = initialAmount
+    @targetAmount = targetAmount
+  end
 
-def list_title(column1_name, column2_name, offset)
-  total_offset = offset + column2_name.length
+  def addFunds(amount)
+    @amount += amount
+    puts "Project #{@name} got some funds!"
+  end
 
-  puts column1_name.ljust(offset) + column2_name
-  puts "".ljust(offset + column2_name.length, "-")
-  total_offset
+  def removeFunds(amount)
+    @amount -= amount
+    puts "Project #{@name} lost some funds!"
+  end
+
+  def to_s
+    "Project #{@name} has $#{@amount} in funding towards a goal og $#{@targetAmount}."
+  end
 end
 
-def project_list(project, funds=0, offset)
-  "#{project.ljust(offset - 1 - funds.to_s.length, ".")}#{funds}$"  
-end
+project1 = Project.new("LMN", 500, 3000)
+project2 = Project.new("XYZ", 25, 75)
 
-offset = list_title(project_column_name, funds_column_name, offset_columns)
-puts project_list(project1, funds1, offset)
-puts project_list(project2, funds2, offset)
-puts project_list(project3, funds3, offset)
+puts project1
+puts project2
+project1.removeFunds(100)
+project2.addFunds(10)
+puts project1
+puts project2
