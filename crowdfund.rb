@@ -23,18 +23,33 @@ class Project
   end
 end
 
-project1 = Project.new("LMN", 500, 3000)
-project2 = Project.new("XYZ", 25, 75)
-projects = [project1, project2]
+class Funding
+  def initialize(name)
+    @name = name
+    @projects = []
+  end
 
-puts "There are #{projects.size} projects in total:"
-projects.each do |project|
-  puts project
+  def add_project(project)
+    @projects << project
+  end
+
+  def requestFunding
+    puts "There are #{@projects.size} projects in total:"
+    @projects.each do |project|
+      puts project
+    end
+
+    @projects.each do |project|
+      project.addFunds(100)
+      puts project
+    end
+  end
 end
 
+project1 = Project.new("LMN", 500, 3000)
+project2 = Project.new("XYZ", 25, 75)
 
-project1.removeFunds(100)
-project2.addFunds(10)
-puts project1
-puts project2
-puts "Project #{project1.name} has a total total funding still needed of $#{project1.targetFunding - project1.funding}"
+startup = Funding.new("VC-Friendly Start-up Projects")
+startup.add_project(project1)
+startup.add_project(project2)
+startup.requestFunding
