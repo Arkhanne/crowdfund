@@ -19,15 +19,20 @@ class Project
   end
 
   def to_s
-    "Project #{@name} has $#{@funding} in funding towards a goal og $#{@targetFunding}."
+    "Project #{@name} has $#{@funding} in funding towards a goal of $#{@targetFunding}."
   end
 end
 
 project1 = Project.new("LMN", 500, 3000)
 project2 = Project.new("XYZ", 25, 75)
+projects = [project1, project2]
 
-puts project1
-puts project2
+puts "There are #{projects.size} projects in total:"
+projects.each do |project|
+  puts project
+end
+
+
 project1.removeFunds(100)
 project2.addFunds(10)
 puts project1
