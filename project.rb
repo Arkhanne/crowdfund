@@ -2,7 +2,7 @@ class Project
   attr_reader :funding, :targetFunding
   attr_accessor :name
 
-  def initialize(name, initialFunding=0, targetFunding)
+  def initialize(name, targetFunding, initialFunding=0)
     @name = name
     @funding = initialFunding
     @targetFunding = targetFunding
