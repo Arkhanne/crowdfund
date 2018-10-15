@@ -39,4 +39,52 @@ describe Project do
       expect(@project.funding).to eql(0)
     end
   end
+
+  context "with amount of funding equal than target funding" do
+    before do
+      @initial_funding = 1000
+      @initial_target = 1000
+      @project = Project.new("abc", @initial_target, @initial_funding)
+    end
+
+    it 'is funded' do
+      expect(@project).to be_funded
+    end
+  end
+
+  context "with amount of funding greater than target funding" do
+    before do
+      @initial_funding = 1100
+      @initial_target = 1000
+      @project = Project.new("abc", @initial_target, @initial_funding)
+    end
+
+    it 'is funded' do
+      expect(@project).to be_funded
+    end
+  end
+
+  context "with amount of funding equal than zero" do
+    before do
+      @initial_funding = 0
+      @initial_target = 1000
+      @project = Project.new("abc", @initial_target, @initial_funding)
+    end
+
+    it 'is warned' do
+      expect(@project).to be_warned
+    end
+  end
+
+  context "with amount of funding less than zero" do
+    before do
+      @initial_funding = -100
+      @initial_target = 1000
+      @project = Project.new("abc", @initial_target, @initial_funding)
+    end
+
+    it 'is warned' do
+      expect(@project).to be_warned
+    end
+  end
 end

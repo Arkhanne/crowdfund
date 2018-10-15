@@ -8,6 +8,14 @@ class Project
     @targetFunding = targetFunding
   end
 
+  def funded?
+    @funding >= @targetFunding
+  end
+
+  def warned?
+    @funding <= 0
+  end
+
   def addFunds(amount)
     @funding += amount
     puts "Project #{@name} got some funds!"
