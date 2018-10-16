@@ -1,13 +1,10 @@
-require_relative 'project'
-require_relative 'die'
+require_relative 'fundinground'
 
 class Fundrequest
-  attr_reader :die
   attr_reader :projects
 
   def initialize(name)
     @name = name
-    @die = Die.new
     @projects = []
   end
 
@@ -22,14 +19,7 @@ class Fundrequest
     end
 
     @projects.each do |project|
-      number_rolled = die.roll
-
-      if number_rolled % 2 == 0
-        project.removeFunds(100)
-      else
-        project.addFunds(100)
-      end
-
+      FundingRound.takeRound(project)
       puts project
     end
   end

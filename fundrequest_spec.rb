@@ -1,4 +1,5 @@
 require_relative 'fundrequest'
+require_relative 'fundinground'
 
 describe Fundrequest do
   before do
@@ -12,7 +13,7 @@ describe Fundrequest do
   end
 
   it 'increases project funds if a even number is rolled' do
-    allow(@fundrequest.die).to receive(:roll).and_return(1)
+    allow(FundingRound.die).to receive(:roll).and_return(1)
 
     @fundrequest.requestFunding
 
@@ -20,7 +21,7 @@ describe Fundrequest do
   end
 
   it 'decreases project funds if a pair number is rolled' do
-    allow(@fundrequest.die).to receive(:roll).and_return(2)
+    allow(FundingRound.die).to receive(:roll).and_return(2)
 
     @fundrequest.requestFunding
 
