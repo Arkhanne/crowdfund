@@ -7,3 +7,4 @@ startup = Fundrequest.new("VC-Friendly Start-up Projects")
 startup.add_project(project1)
 startup.add_project(project2)
 startup.requestFunding(3)
+startup.print_stats
