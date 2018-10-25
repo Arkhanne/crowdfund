@@ -26,7 +26,15 @@ class Project
     puts "Project #{@name} lost some funds!"
   end
 
+  def outstandingFunds
+    @targetFunding - @funding
+  end
+
   def to_s
     "Project #{@name} has $#{@funding} in funding towards a goal of $#{@targetFunding}."
+  end
+
+  def <=>(other)
+    other.outstandingFunds <=> outstandingFunds
   end
 end

@@ -43,5 +43,11 @@ class Fundrequest
     unfunded_projects.each do |project|
       print_name_and_funds(project)
     end
+
+    puts "\nProjects that need contributions:"
+    unfunded_projects.sort.each do |project|
+      formatted_name = project.name.ljust(20, '.')
+      puts "#{formatted_name} #{project.outstandingFunds}"
+    end
   end
 end
