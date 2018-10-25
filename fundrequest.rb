@@ -12,15 +12,18 @@ class Fundrequest
     @projects << project
   end
 
-  def requestFunding
+  def requestFunding(rounds)
     puts "There are #{@projects.size} projects in total:"
     @projects.each do |project|
       puts project
     end
 
-    @projects.each do |project|
-      FundingRound.takeRound(project)
-      puts project
+    1.upto(rounds) do |round|
+      puts "\nRound #{round}:"
+      @projects.each do |project|
+        FundingRound.takeRound(project)
+        puts project
+      end
     end
   end
 end

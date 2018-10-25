@@ -15,16 +15,16 @@ describe Fundrequest do
   it 'increases project funds if a even number is rolled' do
     allow(FundingRound.die).to receive(:roll).and_return(1)
 
-    @fundrequest.requestFunding
+    @fundrequest.requestFunding(2)
 
-    expect(@fundrequest.projects[0].funding).to eql(@initial_funding + 100)
+    expect(@fundrequest.projects[0].funding).to eql(@initial_funding + (100 * 2))
   end
 
   it 'decreases project funds if a pair number is rolled' do
     allow(FundingRound.die).to receive(:roll).and_return(2)
 
-    @fundrequest.requestFunding
+    @fundrequest.requestFunding(2)
 
-    expect(@fundrequest.projects[0].funding).to eql(@initial_funding - 100)
+    expect(@fundrequest.projects[0].funding).to eql(@initial_funding - (100 * 2))
   end
 end
