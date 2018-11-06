@@ -18,12 +18,12 @@ class Project
 
   def addFunds(amount)
     @funding += amount
-    puts "Project #{@name} got some funds!"
+    puts "    Project #{@name} got some funds!"
   end
 
   def removeFunds(amount)
     @funding -= amount
-    puts "Project #{@name} lost some funds!"
+    puts "    Project #{@name} lost some funds!"
   end
 
   def outstandingFunds
@@ -31,7 +31,7 @@ class Project
   end
 
   def to_s
-    "Project #{@name} has $#{@funding} in funding towards a goal of $#{@targetFunding}."
+    "    Project #{@name} has $#{@funding} in funding towards a goal of $#{@targetFunding}."
   end
 
   def <=>(other)
