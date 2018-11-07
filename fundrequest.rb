@@ -40,7 +40,7 @@ class Fundrequest
 
   def print_stats
     funded_projects, unfunded_projects = @projects.partition(&:funded?)
- 
+
     puts "\n#{funded_projects.size} funded projects:"
     funded_projects.each do |project|
       print_name_and_funds(project)
