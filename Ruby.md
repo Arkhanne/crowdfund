@@ -415,5 +415,47 @@ end
 puts SnackBar::SNACKS
 snack = SnackBar.random
 puts snack.name
+```
+## Hashes
+```
+> snacks_carbs = {:candy => 15, :pretzel => 10, :soda => 5}
+=> {:candy=>15, :pretzel=>10, :soda=>5}
+> snack_carbs[:candy]
+=> 15
+> snack_carbs[:pretzel]
+=> 10
 
+> snack_carbs = {candy: 30, pretzel: 100, soda: 50}
+=> {:candy=>30, :pretzel=>100, :soda=>50}
+> snack_carbs.keys
+=> [:candy, :pretzel, :soda]
+> snack_carbs.values
+=> [30, 100, 50]
+
+> snack_carbs = {}
+=> {}
+> snack_carbs = Hash.new
+=> {}
+> snack_carbs[:candy] = 15
+=> 15
+> snack_carbs [:candy]
+=> 15
+```
+```Ruby
+snack_carbs.each do |name, carbs|
+  puts "#{name} has #{carbs} carbs"
+end
+
+snack_carbs.each { |key, value| puts "#{key} has #{value} carbs" }
+```
+```
+> snack_carbs = {}
+=> {}
+> snack_carbs[:soda]
+=> nil
+
+> snack_carbs = Hash.new(0)
+=> {}
+> snack_carbs[:soda]
+=> 0
 ```
