@@ -1,40 +1,50 @@
+# frozen_string_literal: true
+
+#
+# Project
+#
 class Project
-  attr_reader :funding, :targetFunding
+  attr_reader :funding, :target_funding
   attr_accessor :name
 
-  def initialize(name, targetFunding, initialFunding=0)
+  def initialize(name, target_funding, initial_funding = 0)
     @name = name
-    @funding = initialFunding
-    @targetFunding = targetFunding
+    @funding = initial_funding
+    @target_funding = target_funding
   end
 
   def funded?
-    @funding >= @targetFunding
+    @funding >= @target_funding
   end
 
   def warned?
     @funding <= 0
   end
 
-  def addFunds(amount)
+  def add_funds(amount)
     @funding += amount
     puts "    Project #{@name} got some funds!"
   end
 
-  def removeFunds(amount)
+  def remove_funds(amount)
     @funding -= amount
     puts "    Project #{@name} lost some funds!"
   end
 
-  def outstandingFunds
-    @targetFunding - @funding
+  def outstanding_funds
+    @target_funding - @funding
   end
 
   def to_s
-    "    Project #{@name} has $#{@funding} in funding towards a goal of $#{@targetFunding}."
+    "    Project #{@name} has $#{@funding} in funding towards a goal of $#{@target_funding}."
   end
 
   def <=>(other)
-    other.outstandingFunds <=> outstandingFunds
+    other.outstanding_funds <=> outstanding_funds
+  end
+
+  def add_pledge(pledge)
+    @funding += pledge.amount
+    puts "    Project #{@name} received a #{pledge.name} pledge worth $#{pledge.amount}"
   end
 end

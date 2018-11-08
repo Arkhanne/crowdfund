@@ -8,23 +8,23 @@ describe Project do
   end
 
   it 'has an initial target funding amount' do
-    expect(@project.targetFunding).to eql(@initial_target)
+    expect(@project.target_funding).to eql(@initial_target)
   end
 
   it 'computes the total funding outstanding as the target funding amount minus the funding amount' do
-    expect(@project.targetFunding - @project.funding).to eql(@initial_target - @initial_funding)
+    expect(@project.target_funding - @project.funding).to eql(@initial_target - @initial_funding)
   end
   
   it 'increases funds by 25 when funds are added' do
     amount = 25
-    @project.addFunds(amount)
+    @project.add_funds(amount)
 
     expect(@project.funding).to eql(@initial_funding + amount)
   end
   
   it 'decreases funds by 15 when funds are removed'do
     amount = 15
-    @project.removeFunds(amount)
+    @project.remove_funds(amount)
 
     expect(@project.funding).to eql(@initial_funding - amount)
   end

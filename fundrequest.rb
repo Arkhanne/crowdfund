@@ -28,7 +28,7 @@ class Fundrequest
     1.upto(rounds) do |round|
       puts "\nRound #{round}:"
       @projects.each do |project|
-        FundingRound.takeRound(project)
+        FundingRound.take_round(project)
         puts project
       end
     end
@@ -54,7 +54,7 @@ class Fundrequest
     puts "\nProjects that need contributions:"
     unfunded_projects.sort.each do |project|
       formatted_name = project.name.ljust(20, '.')
-      puts "    #{formatted_name} #{project.outstandingFunds}"
+      puts "    #{formatted_name} #{project.outstanding_funds}"
     end
   end
 end

@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'project'
 require_relative 'die'
+require_relative 'pledgecollection'
 
+#
+# FundingRound
+#
 module FundingRound
   @die = Die.new
 
@@ -8,13 +14,15 @@ module FundingRound
     @die
   end
 
-  def self.takeRound(project)
+  def self.take_round(project)
     number_rolled = @die.roll
 
-    if number_rolled % 2 == 0
-      project.removeFunds(100)
+    if (number_rolled % 2).zero?
+      project.remove_funds(100)
     else
-      project.addFunds(100)
+      project.add_funds(100)
     end
+
+    project.add_pledge(PledgeCollection.random)
   end
 end
