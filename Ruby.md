@@ -459,3 +459,56 @@ snack_carbs.each { |key, value| puts "#{key} has #{value} carbs" }
 > snack_carbs[:soda]
 => 0
 ```
+## Custom Iterators
+```Ruby
+def once
+  puts "Before yield"
+  yield
+  puts "After yield"
+end
+
+once { puts "Running your block" }
+```
+
+```Ruby
+def three_times
+  puts "Ready"
+  yield(1)
+  puts "Set"
+  yield 2
+  puts "Go!"
+  yield 3
+end
+
+three_times { |number| puts number" }
+```
+
+```Ruby
+def compute
+  if block_given?
+    puts yield
+  else
+    puts "Does not compute!"
+  end
+end
+
+compute { 3.14 }
+```
+
+```Ruby
+numbers = (1..10).to_a
+puts numbers.select { |n| n.even? }
+
+# Same with iterators
+numbers = (1..10).to_a
+
+def my_select(array)
+  results = []
+  array.each do |element|
+    results << element if yield(element)
+  end
+  results
+end
+
+puts my_select(numbers) { |n| n.even? }
+```
