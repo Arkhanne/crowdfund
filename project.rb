@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'pledgecollection'
+
 #
 # Project
 #
@@ -49,5 +51,11 @@ class Project
     @funding += pledge.amount
     puts "    Project #{@name} received a #{pledge.name} pledge worth $#{pledge.amount}"
     puts "    Project #{@name}'s pledges: #{@pledges}"
+  end
+
+  def each_pledge
+    @pledges.each do |name, amount|
+      yield Pledge.new(name, amount)
+    end
   end
 end

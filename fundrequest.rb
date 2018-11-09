@@ -56,5 +56,12 @@ class Fundrequest
       formatted_name = project.name.ljust(20, '.')
       puts "    #{formatted_name} #{project.outstanding_funds}"
     end
+
+    @projects.each do |project|
+      puts "\nProject #{project.name}'s pledges:"
+      project.each_pledge do |pledge|
+        puts "    $#{pledge.amount} in #{pledge.name} pledges"
+      end
+    end
   end
 end
