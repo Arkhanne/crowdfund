@@ -612,3 +612,74 @@ movie.thumbs_up
 song = Song.new('Ruby Baby', 10)
 song.thumbs_up
 ```
+## Distribution
+```Ruby
+module MovieSystem
+  VERSION = 1.0
+
+  def self.info
+    puts "Movie system version #{VERSION}"
+  end
+
+  class Player
+  end
+end
+
+module GameSystem
+  VERSION = 2.0
+
+  def self.info
+    puts "Game system version #{VERSION}"
+  end
+
+  class Player
+  end
+end
+
+puts MovieSystem::VERSION
+puts MovieSystem.info
+puts MovieSystem::Player.new
+
+puts GameSystem::VERSION
+puts GameSystem.info
+puts GameSystem::Player.new
+```
+```Ruby
+require_relative '../lib/flicks/playlist'
+require_relative '../lib/flicks/movie3d'
+
+playlist = Flicks::Playlist.new('Kermit')
+default_movie_file = File.join(File.dirname(__FILE__), 'movies.csv')
+playlist.load(ARGV.shift || default_movie_file)require_relative '../lib/flicks/playlist'
+require_relative '../lib/flicks/movie3d'
+
+playlist = Flicks::Playlist.new('Kermit')
+default_movie_file = File.join(File.dirname(__FILE__), 'movies.csv')
+playlist.load(ARGV.shift || default_movie_file)
+```
+```Ruby
+#flicks.gemspec
+Gem::Specification.new do |s|
+  s.name        = "flicks"
+  s.version     = "1.0.0"
+  s.author      = "The Pragmatioc Studio"
+  s.email       = "support.pragmaticstudio.com"
+  s.summary     = "Plays and reviews movies"
+  s.description = "File.read(File.join(File.dirname(__FILE), 'README'))"
+  s.homepage    = "http://pagmaticstudio.com"
+  
+  s.files       = Dir["{bin,lib,spec}/**/*"] + %w(LICENSE README)
+  s.test_files  = Dir["spec/**/*"]
+  s.executables = [ 'flicks' ]
+
+  s.required_ruby_version = '>=1.9'
+  s.add_development_dependency 'rspec'
+end
+```
+```
+$ gem build flicks.gemspec
+$ gem install flicks-1.0.0.gem
+$ gem list flicks -d
+$ flicks
+$ gem uninstall flicks
+```
