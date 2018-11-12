@@ -512,3 +512,43 @@ end
 
 puts my_select(numbers) { |n| n.even? }
 ```
+## Input/Output
+```Ruby
+loop do
+  puts "\nHow many viewings? ('quit' to exit)"
+  answer = gets.chomp.downcase
+  case answer
+  when /^\d+$/
+    playlist.play(answer.to_i)
+  when 'quit', 'exit'
+    playlist.print_stats
+    break
+  else
+    puts "Please enter a number or 'quit'"
+  end
+end
+```
+```Ruby
+File.open('movies.csv') do |file|
+  file.each_line do |line|
+    puts line
+  end
+end
+```
+```Ruby
+File.readlines('movies.csv').each do |line|
+  puts line
+end
+```
+```Ruby
+playlist.load(ARGV.shift || 'movies.csv')
+```
+```Ruby
+def save(to_file = 'movie_rankings.csv')
+  File.open(to_file, 'w') do |file|
+    @movies.sort.each do |movie|
+      file.puts "#{movie.title},#{movie.rank}"
+    end
+  end
+end
+```
