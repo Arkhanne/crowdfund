@@ -552,3 +552,32 @@ def save(to_file = 'movie_rankings.csv')
   end
 end
 ```
+## Inheritance
+```Ruby
+class Movie3D < Movie
+end
+```
+```
+> Movie3D.superclass
+=> Movie
+> Movie3D.ancestors
+=> [Movie3D, Movie, Object, Kernel, BasicObject]
+```
+```Ruby
+class Movie3D < Movie
+  def initialize(title, rank, wow_factor)
+    super(title, rank)
+    @wow_factor = wow_factor
+  end
+
+  def thumbs_up
+    # @rank += (1 * @wow_factor)
+    @wow_factor.times { super }
+  end
+  end
+
+  def show_effect
+    puts 'Wow! ' * @wow_factor
+  end
+end
+```
